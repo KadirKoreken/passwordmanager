@@ -1,5 +1,5 @@
 <?php
-echo 1;
+echo 'V1.0.0';
 
     // Laravel cache'lerini temizle
     echo shell_exec('php artisan cache:clear');
@@ -13,6 +13,7 @@ echo 1;
 
     echo shell_exec('php artisan view:clear');
     echo "View cache has been cleared.\n";
+
 
     // Tarayıcı cache'i etkisini azaltmak için assetlerin versiyonunu yenileyin
     echo shell_exec('php artisan view:cache');

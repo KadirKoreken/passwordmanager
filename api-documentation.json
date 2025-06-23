@@ -2,7 +2,7 @@
   "info": {
     "name": "Şifre Yöneticisi API",
     "description": "Laravel tabanlı şifre yöneticisi API'si - Mobile app ve browser extension için hazır",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [

@@ -3,7 +3,7 @@ name: FTPS Deploy
 on:
   push:
     branches:
-      - main   # main branch'a push olduğunda çalışır
+      - main
 
 jobs:
   deploy-via-ftps:
@@ -27,8 +27,9 @@ jobs:
             set ftp:ssl-force true;
             set ftp:ssl-protect-data true;
             set ftp:passive-mode true;
+            set cmd:fail-exit false;
             open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}:21;
-            mirror -R --delete --verbose --exclude-glob .git* . ${{ secrets.FTP_SERVER_DIR }};
+            mirror -R --delete --verbose --ignore-time --exclude-glob .git* --exclude-glob .github* . ${{ secrets.FTP_SERVER_DIR }};
             quit
           "
 

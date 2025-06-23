@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şifre Yöneticisi</title>
+    <link rel="stylesheet" href="../css/popup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 10C6 7.79086 7.79086 6 10 6H14C16.2091 6 18 7.79086 18 10V11H19C20.1046 11 21 11.8954 21 13V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V13C3 11.8954 3.89543 11 5 11H6V10Z" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="12" cy="16" r="2" fill="currentColor"/>
+                </svg>
+                <span>Şifre Yöneticisi</span>
+            </div>
+            <div class="status" id="status">
+                <span class="status-dot"></span>
+                <span class="status-text">Kontrol ediliyor...</span>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Yükleniyor...</p>
+        </div>
+
+        <!-- Login Form -->
+        <div class="login-section" id="login-section" style="display: none;">
+            <h2>Giriş Yapın</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">E-posta:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Şifre:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                <div class="error-message" id="login-error"></div>
+            </form>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="main-content" style="display: none;">
+            <!-- User Info -->
+            <div class="user-info" id="user-info">
+                <div class="user-avatar">👤</div>
+                <div class="user-details">
+                    <span class="user-name" id="user-name"></span>
+                    <span class="user-email" id="user-email"></span>
+                </div>
+                <button class="btn btn-small btn-logout" id="logout-btn">Çıkış</button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-section">
+                <div class="search-input-wrapper">
+                    <input type="text" id="search-input" placeholder="Şifre ara...">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="recent">Son Şifreler</button>
+                <button class="tab-btn" data-tab="current-site" id="current-site-tab-btn">Bu Site</button>
+                <button class="tab-btn" data-tab="all">Tümü</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Recent Passwords -->
+                <div class="tab-pane active" id="recent-tab">
+                    <div class="password-list" id="recent-passwords"></div>
+                </div>
+
+                <!-- Current Site Passwords -->
+                <div class="tab-pane" id="current-site-tab">
+                    <div class="password-list" id="current-site-passwords"></div>
+                </div>
+
+                <!-- All Passwords -->
+                <div class="tab-pane" id="all-tab">
+                    <div class="password-list" id="all-passwords"></div>
+                </div>
+            </div>
+
+            <!-- Add Password Button -->
+            <div class="add-password-section">
+                <button class="btn btn-secondary" id="add-password-btn">+ Yeni Şifre Ekle</button>
+            </div>
+        </div>
+
+        <!-- Add Password Modal -->
+        <div class="modal" id="add-password-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Yeni Şifre Ekle</h3>
+                    <button class="close-btn" id="close-modal">&times;</button>
+                </div>
+                <form id="add-password-form">
+                    <div class="form-group">
+                        <label for="new-title">Başlık:</label>
+                        <input type="text" id="new-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-url">URL:</label>
+                        <input type="url" id="new-url">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-username">Kullanıcı Adı:</label>
+                        <input type="text" id="new-username">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">Şifre:</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="new-password" required>
+                            <button type="button" class="generate-btn" id="generate-password">🎲</button>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancel-add">İptal</button>
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+{
+  "info": {
+    "name": "Şifre Yöneticisi API",
+    "description": "Laravel tabanlı şifre yöneticisi API'si - Mobile app ve browser extension için hazır",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000/api",
+      "type": "string"
+    },
+    {
+      "key": "bearer_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearer_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register"]
+            },
+            "description": "Yeni kullanıcı kaydı"
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Kullanıcı girişi"
+          }
+        },
+        {
+          "name": "Get User Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/auth/user",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "user"]
+            },
+            "description": "Oturum açmış kullanıcının bilgilerini getir"
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/auth/logout",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "logout"]
+            },
+            "description": "Kullanıcı çıkışı"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Password Management",
+      "item": [
+        {
+          "name": "Get All Passwords",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/passwords?per_page=15&search=gmail",
+              "host": ["{{base_url}}"],
+              "path": ["passwords"],
+              "query": [
+                {
+                  "key": "per_page",
+                  "value": "15",
+                  "description": "Sayfa başına kayıt sayısı"
+                },
+                {
+                  "key": "search",
+                  "value": "gmail",
+                  "description": "Arama terimi"
+                }
+              ]
+            },
+            "description": "Kullanıcının tüm şifrelerini listele"
+          }
+        },
+        {
+          "name": "Create Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Gmail\",\n    \"url\": \"https://gmail.com\",\n    \"username\": \"john@gmail.com\",\n    \"password\": \"super-secret-password\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/passwords",
+              "host": ["{{base_url}}"],
+              "path": ["passwords"]
+            },
+            "description": "Yeni şifre oluştur"
+          }
+        },
+        {
+          "name": "Get Password",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/passwords/1",
+              "host": ["{{base_url}}"],
+              "path": ["passwords", "1"]
+            },
+            "description": "Belirli bir şifreyi getir"
+          }
+        },
+        {
+          "name": "Update Password",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Gmail Updated\",\n    \"url\": \"https://gmail.com\",\n    \"username\": \"john.doe@gmail.com\",\n    \"password\": \"new-super-secret-password\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/passwords/1",
+              "host": ["{{base_url}}"],
+              "path": ["passwords", "1"]
+            },
+            "description": "Şifreyi güncelle"
+          }
+        },
+        {
+          "name": "Delete Password",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/passwords/1",
+              "host": ["{{base_url}}"],
+              "path": ["passwords", "1"]
+            },
+            "description": "Şifreyi sil"
+          }
+        },
+        {
+          "name": "Search Passwords",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"query\": \"gmail\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/passwords/search",
+              "host": ["{{base_url}}"],
+              "path": ["passwords", "search"]
+            },
+            "description": "Şifre arama"
+          }
+        },
+        {
+          "name": "Decrypt Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/passwords/1/decrypt",
+              "host": ["{{base_url}}"],
+              "path": ["passwords", "1", "decrypt"]
+            },
+            "description": "Şifreyi çöz ve düz metin olarak getir"
+          }
+        },
+        {
+          "name": "Generate Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"length\": 16,\n    \"include_symbols\": true,\n    \"include_numbers\": true,\n    \"include_uppercase\": true,\n    \"include_lowercase\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/passwords/generate",
+              "host": ["{{base_url}}"],
+              "path": ["passwords", "generate"]
+            },
+            "description": "Rastgele şifre üret"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Utility",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            },
+            "description": "API sağlık kontrolü"
+          }
+        }
+      ]
+    }
+  ]
+}

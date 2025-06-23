@@ -1,0 +1,36 @@
+{
+  "name": "guvenli-sifre-yoneticisi",
+  "version": "1.0.0",
+  "description": "Laravel tabanlı güvenli şifre yöneticisi tarayıcı eklentisi",
+  "main": "js/popup.js",
+  "scripts": {
+    "build": "echo 'Building extension...' && npm run validate",
+    "validate": "echo 'Validating manifest...' && node scripts/validate.js",
+    "test": "echo 'Running tests...'",
+    "package": "npm run build && zip -r extension.zip . -x '*.git*' 'node_modules/*' '*.md' 'scripts/*' 'package*.json'",
+    "dev": "echo 'Development mode - Load unpacked in Chrome'",
+    "icons": "echo 'Generate icons from SVG if needed'"
+  },
+  "keywords": [
+    "password-manager",
+    "chrome-extension",
+    "security",
+    "laravel",
+    "encryption"
+  ],
+  "author": "Password Manager Team",
+  "license": "MIT",
+  "devDependencies": {},
+  "extensionInfo": {
+    "targetBrowsers": ["chrome", "edge"],
+    "manifestVersion": 3,
+    "permissions": [
+      "activeTab",
+      "storage",
+      "tabs",
+      "contextMenus",
+      "alarms"
+    ],
+    "apiEndpoint": "http://127.0.0.1:8000/api"
+  }
+}

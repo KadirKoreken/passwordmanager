@@ -1,0 +1,21 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Circle -->
+  <circle cx="64" cy="64" r="56" fill="url(#grad1)"/>
+
+  <!-- Lock Icon -->
+  <path d="M46 52C46 43.1634 53.1634 36 62 36H66C74.8366 36 82 43.1634 82 52V60H86C88.2091 60 90 61.7909 90 64V88C90 90.2091 88.2091 92 86 92H42C39.7909 92 38 90.2091 38 88V64C38 61.7909 39.7909 60 42 60H46V52Z" stroke="white" stroke-width="4" fill="none"/>
+
+  <!-- Lock Body -->
+  <rect x="42" y="60" width="44" height="28" rx="4" fill="white" fill-opacity="0.2"/>
+
+  <!-- Key Hole -->
+  <circle cx="64" cy="74" r="4" fill="white"/>
+  <rect x="62" y="74" width="4" height="8" fill="white"/>
+</svg>

@@ -12,25 +12,24 @@ jobs:
       - name: Kodu çek
         uses: actions/checkout@v3
 
-      - name: FTP ile yükle
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Gereksiz dosyaları sil
+        run: |
+          rm -rf .git
+          rm -rf .github
+          rm -rf tests
+          rm -rf storage
+          rm -f .env
+          rm -f clearall.php
+          rm -f composer.lock
+          rm -f package-lock.json
+          rm -f phpunit.xml
+          rm -f README.md
+
+      - name: FTPS ile yükle
+        uses: airvzxf/ftp-deployment-action@latest
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
+          user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: ${{ secrets.FTP_PORT }}
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          protocol: ftps
-          security: loose
-          exclude: |
-            **/.git*
-            **/.github*
-            **/node_modules/**
-            **/tests/**
-            **/storage/**
-            **/.env
-            **/clearall.php
-            **/composer.lock
-            **/package-lock.json
-            **/phpunit.xml
-            **/README.md
+          remote_dir: ${{ secrets.FTP_SERVER_DIR }}
+          secure: true

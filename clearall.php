@@ -15,10 +15,9 @@ echo 1;
     echo "View cache has been cleared.\n";
 
     // Tarayıcı cache'i etkisini azaltmak için assetlerin versiyonunu yenileyin
-    // Bunun yerine sadece app.js veya app.css dosyasının sonuna bir versiyon numarası ekleyebilirsiniz.
     echo shell_exec('php artisan view:cache');
     echo "View cache has been regenerated.\n";
-    
+
     // Ayrıca public dizininde yer alan js/css dosyalarının adını değiştirerek de tarayıcı cache sorununu çözebilirsiniz.
     // Örneğin: app.js dosyasını app.js?v=2 gibi çağırabilirsiniz.
 

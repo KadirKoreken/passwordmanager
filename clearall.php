@@ -1,5 +1,5 @@
 <?php
-echo 'V1.0.0';
+echo 'V1.0.0 deploy deneme';
 
     // Laravel cache'lerini temizle
     echo shell_exec('php artisan cache:clear');

@@ -1,4 +1,4 @@
-name: FTP Deploy
+name: FTPS Deploy
 
 on:
   push:
@@ -6,34 +6,31 @@ on:
       - main   # main branch'a push olduğunda çalışır
 
 jobs:
-  ftp-deploy:
+  deploy-via-ftps:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Kodu çek
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Gereksiz dosyaları sil
+      - name: Clean unnecessary files
         run: |
-          rm -rf .git
-          rm -rf .github
-          rm -rf tests
-          rm -rf storage
-          rm -f .env
-          rm -f clearall.php
-          rm -f composer.lock
-          rm -f package-lock.json
-          rm -f phpunit.xml
-          rm -f README.md
+          rm -rf .git .github tests storage
+          rm -f .env clearall.php composer.lock package-lock.json phpunit.xml README.md
 
-      - name: FTPS ile yükle
+      - name: Deploy via FTPS using lftp
         run: |
-          sudo apt-get update
-          sudo apt-get install -y lftp
+          sudo apt-get update && sudo apt-get install -y lftp
+
           lftp -c "
-          set ssl:verify-certificate no;
-          set ftp:ssl-force true;
-          set ftp:ssl-protect-data true;
-          open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }};
-          mirror -R --delete --verbose . ${{ secrets.FTP_SERVER_DIR }};
-          quit
+            set ssl:verify-certificate no;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}:21;
+            mirror -R --delete --verbose --exclude-glob .git* . ${{ secrets.FTP_SERVER_DIR }};
+            quit
           "
+
+      - name: Deploy completed
+        run: echo "✅ Deployment completed successfully!"

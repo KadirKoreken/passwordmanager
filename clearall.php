@@ -1,5 +1,5 @@
 <?php
-echo 'V1.0.0 yeni deploy test';
+echo 'V1.0.0 yeni deploy test 23:15';
 
     // Laravel cache'lerini temizle
     echo shell_exec('php artisan cache:clear');
